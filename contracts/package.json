@@ -1,0 +1,26 @@
+{
+  "name": "agentwallet-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hardhat 2 tests and TrustKeys deployment helpers for AgentWallet interface v1",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:wallet": "hardhat test test/AgentWallet.test.js",
+    "test:registry": "hardhat test test/ServiceRegistry.test.js",
+    "read:events": "node scripts/read-events.js",
+    "verify:deployment": "node scripts/check-deployment.js",
+    "export:deployment": "node scripts/make-deployments.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.2.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.26.3",
+    "hardhat-gas-reporter": "^1.0.8"
+  },
+  "dependencies": {
+    "ethers": "^6.13.5"
+  }
+}
