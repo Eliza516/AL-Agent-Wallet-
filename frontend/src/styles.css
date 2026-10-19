@@ -1,0 +1,121 @@
+/* Phong cách: Swiss tối giản, nền xanh đen, nhấn vàng hổ phách (theo gợi ý fintech của skill ui-ux-pro-max). */
+:root {
+  --bg: #0f172a;
+  --card: #1a2236;
+  --muted-bg: #272f42;
+  --border: #334155;
+  --text: #f8fafc;
+  --text-muted: #a8b3c7; /* tương phản ≥ 4.5:1 trên nền card */
+  --primary: #f59e0b;
+  --on-primary: #0f172a;
+  --danger: #ef4444;
+  --ok: #34d399;
+  --warn: #fbbf24;
+  --radius: 10px;
+  --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px/1.5 var(--font);
+}
+
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 1.75rem; font-weight: 700; }
+h2 { font-size: 1.125rem; font-weight: 600; }
+h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: 20px; }
+.top h1 { color: var(--primary); }
+
+.muted { color: var(--text-muted); }
+.small { font-size: 0.875rem; }
+.mono { font-family: var(--mono); font-size: 0.875rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Bố cục: 2 cột trên máy tính, 1 cột trên điện thoại */
+.layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.side { display: grid; gap: 16px; min-width: 0; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; min-width: 0; }
+.card > h2 { margin-bottom: 12px; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+.card-head h2 { margin: 0; }
+
+.badge { font-size: 0.75rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; background: var(--muted-bg); border: 1px solid var(--border); }
+.badge-danger { background: var(--danger); border-color: var(--danger); color: #000; }
+
+/* Đồng hồ hạn mức */
+.big { font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.unit { font-size: 0.875rem; font-weight: 400; color: var(--text-muted); }
+.meter { height: 10px; background: var(--muted-bg); border-radius: 999px; overflow: hidden; margin: 12px 0 6px; }
+.meter-fill { height: 100%; transition: width 0.3s ease; }
+.meter-ok { background: var(--ok); }
+.meter-warn { background: var(--warn); }
+.meter-full { background: var(--danger); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0 0; }
+.facts dt { color: var(--text-muted); font-size: 0.8125rem; }
+.facts dd { margin: 0; font-weight: 600; }
+
+/* Bảng lịch sử */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--text-muted); font-weight: 500; }
+
+/* Nút */
+.btn { min-height: 44px; padding: 0 18px; font: inherit; font-weight: 600; color: var(--text); background: var(--muted-bg); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.2s, opacity 0.2s; }
+.btn:hover:not(:disabled) { background: #334155; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.btn-primary:hover:not(:disabled) { background: var(--warn); }
+.btn-danger { background: var(--danger); border-color: var(--danger); color: #000; }
+.btn-danger:hover:not(:disabled) { background: #f87171; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.icon-btn { display: inline-grid; place-items: center; width: 32px; height: 32px; vertical-align: middle; color: var(--text-muted); background: none; border: 0; border-radius: 6px; cursor: pointer; }
+.icon-btn:hover { color: var(--text); background: var(--muted-bg); }
+
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* Chat */
+.chat { display: flex; flex-direction: column; min-height: 560px; }
+.messages { flex: 1; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; max-height: 520px; padding-right: 4px; margin-bottom: 12px; }
+.msg { max-width: 90%; padding: 10px 14px; border-radius: var(--radius); background: var(--muted-bg); overflow-wrap: anywhere; }
+.msg-user { align-self: flex-end; background: var(--primary); color: var(--on-primary); }
+.msg-failed { border: 1px solid var(--danger); }
+.chips { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.chip { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 0.8125rem; padding: 4px 10px; border-radius: 6px; border-left: 3px solid; background: var(--card); }
+.chip-ok { border-color: var(--ok); }
+.chip-fail { border-color: var(--danger); }
+.chat-form { display: flex; gap: 8px; }
+
+/* Ô nhập */
+input { width: 100%; min-height: 44px; padding: 0 12px; font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+input::placeholder { color: #7c8aa3; }
+label { display: block; font-size: 0.875rem; color: var(--text-muted); }
+label input { margin-top: 4px; }
+
+/* Bảng owner */
+.owner-forms { border: 0; padding: 0; margin: 16px 0 0; display: grid; gap: 20px; min-width: 0; }
+.owner-forms:disabled { opacity: 0.5; }
+.row { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0; }
+.row > label { flex: 1 1 140px; }
+.allowlist { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 4px; overflow-wrap: anywhere; }
+
+/* Thông báo */
+.notice { margin: 12px 0 0; padding: 10px 14px; font-size: 0.875rem; border-radius: 8px; background: var(--muted-bg); border-left: 3px solid var(--border); }
+.notice-warn { border-color: var(--warn); }
+.notice-error { border-color: var(--danger); }
+.notice-ok { border-color: var(--ok); }
+.notice + .btn { margin-top: 12px; }
+.banner { margin-bottom: 16px; padding: 12px 16px; background: #3b1219; border: 1px solid var(--danger); border-radius: var(--radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
